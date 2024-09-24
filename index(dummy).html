@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Screenshot App</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <header>
+        <h1>Website Screenshot App</h1>
+        <div class="team-name">Tech Titans</div>
+    </header>
+    <main>
+        <article>
+            <form onsubmit="doScreenshot();return false;">
+                <input type="url" name="url" placeholder="Enter website URL (e.g., https://google.com)" required>
+                <button type="submit">Capture Screenshot</button>
+            </form>
+            <div class="screenshot-container">
+                <img alt="Your Screenshot" style="display: none;">
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>Powered by Tech Titans &copy; 2024</p>
+    </footer>
+
+    <script>
+        function doScreenshot(){
+            const url = document.querySelector('input').value;
+            if (!url) return;
+            const img = document.querySelector('img');
+            img.style.display = 'none';
+            img.src = '/screenshot?url=' + encodeURIComponent(url);
+            img.onload = () => {
+                img.style.display = 'block';
+                img.classList.add('fade-in');  // Add animation class
+            };
+        }
+    </script>
+</body>
+</html>
